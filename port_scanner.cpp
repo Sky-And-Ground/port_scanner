@@ -282,7 +282,6 @@ public:
     }
 };
 
-// single port scan.
 class PortScan {
     using PortsTable = std::bitset<65536>;
 
@@ -416,3 +415,4 @@ int main(int argc, char* argv[]) {
     scanner.scan(ip, port_start, port_end, thread_pool_size, timeout_millisec);
     return 0;
 }
+
