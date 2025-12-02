@@ -1,0 +1,4 @@
+ip               = 192.168.52.114
+port_start       = 5000
+port_end         = 10000
+timeout_millisec = 2000
