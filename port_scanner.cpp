@@ -33,7 +33,13 @@ class PortScanner {
         
         auto timer = std::make_shared<asio::steady_timer>(ioc);
         timer->expires_after(std::chrono::milliseconds(timeout_millisec));
-        timer->async_wait([socket, timer](const std::error_code& ec) {});
+        timer->async_wait([socket, timer](const std::error_code& ec) {
+            if (!ec) {
+                if (socket->is_open()) {
+                    socket->cancel();
+                }
+            }
+        });
     }
 public:
     PortScanner() : ioc{}, table{} {}
