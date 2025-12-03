@@ -53,6 +53,7 @@ public:
     PortScanner() : ioc{}, table{} {}
 
     void scan(const std::string& ip, int port_start, int port_end, int timeout_millisec) {
+        // scan 3 times, to increase the scan quality, especially for bad network environment.
         scan_all(ip, port_start, port_end, timeout_millisec);
         scan_all(ip, port_start, port_end, timeout_millisec);
         scan_all(ip, port_start, port_end, timeout_millisec);
