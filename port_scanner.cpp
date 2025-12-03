@@ -41,13 +41,21 @@ class PortScanner {
             }
         });
     }
+
+    void scan_all(const std::string& ip, int port_start, int port_end, int timeout_millisec) {
+        for (int i = port_start; i <= port_end; ++i) {
+            if (!table.test(i)) {
+                port_scan(ip, i, timeout_millisec);
+            }
+        }
+    }
 public:
     PortScanner() : ioc{}, table{} {}
 
     void scan(const std::string& ip, int port_start, int port_end, int timeout_millisec) {
-        for (int i = port_start; i <= port_end; ++i) {
-            port_scan(ip, i, timeout_millisec);
-        }
+        scan_all(ip, port_start, port_end, timeout_millisec);
+        scan_all(ip, port_start, port_end, timeout_millisec);
+        scan_all(ip, port_start, port_end, timeout_millisec);
 
         ioc.run();
     }
